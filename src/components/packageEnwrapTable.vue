@@ -12,8 +12,6 @@
   </a-table>
 </template>
 <script>
-import { Table } from 'ant-design-vue';
-
 const columns = [{
   title: '运单号',
   dataIndex: 'orderId',
@@ -29,6 +27,9 @@ const columns = [{
 },{
   title: '预约时间',
   dataIndex: 'appointmentTime',
+},{
+  title: '按钮的地方',
+  dataIndex: '',
 }
 ];
 
@@ -44,20 +45,19 @@ export default {
   },
   methods: {
   },
-  components:{
-      'a-table': Table
-  },
   watch:{
       'this.$store.state.list':function(){
           this.data = this.$store.getters.getList;
       }
   },
   mounted:function(){
-        this.$axios.get('/package-bookings').then(res => {   
-            this.data = res.data;
-        }).catch(error => {
-            console.log('发生了错误   '+error);
-        })
+    this.$axios
+    .get('/package-bookings')
+    .then(res => {
+      this.data = res.data;})
+    .catch(error => {
+      console.log('发生了错误'+error);
+    })
   }
 }
 </script>

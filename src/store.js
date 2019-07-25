@@ -13,9 +13,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    
-  },
-  actions: {
     getListFromBackEnd:function(state){
       this.$axios.get('/package-bookings').then(res => {   
         state.list = res.data;
@@ -23,5 +20,8 @@ export default new Vuex.Store({
         console.log('发生了错误   '+error);
     })
     }
+  },
+  actions: {
+    
   }
 })

@@ -8,9 +8,9 @@
     <!-- <home></home> -->
     
 
-
-    <package-enwrap-form></package-enwrap-form>
-    <!-- <package-enwrap-table></package-enwrap-table> -->
+    <show-modal></show-modal>
+    <!-- <package-enwrap-form></package-enwrap-form> -->
+    <package-enwrap-table></package-enwrap-table>
   </div>
 </template>
 
@@ -19,12 +19,14 @@
 import Home from './components/home'
 import PackageEnwrapTable from './components/packageEnwrapTable'
 import PackageEnwrapForm from './components/packageEnwrapForm'
+import showModal from './components/showModal'
 
 export default {
   components:{
     Home,
     PackageEnwrapTable,
-    PackageEnwrapForm
+    PackageEnwrapForm,
+    showModal
   }
 }
 </script>

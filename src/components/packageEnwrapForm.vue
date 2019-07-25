@@ -4,54 +4,71 @@
     @submit="handleSubmit"
   >
     <a-form-item
-      label="Note"
+      label="运单号"
       :label-col="{ span: 5 }"
       :wrapper-col="{ span: 12 }"
     >
       <a-input
         v-decorator="[
-          'note',
-          {rules: [{ required: true, message: 'Please input your note!' }]}
+          'orderId',
+          {rules: [{message: 'Please input your note!' }]}
         ]"
       />
     </a-form-item>
+    
     <a-form-item
-      label="Gender"
+      label="收件人"
       :label-col="{ span: 5 }"
       :wrapper-col="{ span: 12 }"
     >
-      <a-select
+      <a-input
         v-decorator="[
-          'gender',
-          {rules: [{ required: true, message: 'Please select your gender!' }]}
+          'recipientsName',
+          {rules: [{message: 'Please input your note!' }]}
         ]"
-        placeholder="Select a option and change input text above"
-        @change="handleSelectChange"
-      >
-        <a-select-option value="male">
-          male
-        </a-select-option>
-        <a-select-option value="female">
-          female
-        </a-select-option>
-      </a-select>
+      />
     </a-form-item>
+
+    <a-form-item
+      label="电话"
+      :label-col="{ span: 5 }"
+      :wrapper-col="{ span: 12 }"
+    >
+      <a-input
+        v-decorator="[
+          'telPhone',
+          {rules: [{message: 'Please input your note!' }]}
+        ]"
+      />
+    </a-form-item>
+
+    <a-form-item
+      label="重量"
+      :label-col="{ span: 5 }"
+      :wrapper-col="{ span: 12 }"
+    >
+      <a-input
+        v-decorator="[
+          'height',
+          {rules: [{message: 'Please input your note!' }]}
+        ]"
+      />
+    </a-form-item>
+
     <a-form-item
       :wrapper-col="{ span: 12, offset: 5 }"
     >
-      <a-button
+      <!-- <a-button
         type="primary"
         html-type="submit"
       >
         Submit
-      </a-button>
+      </a-button> -->
     </a-form-item>
   </a-form>
 </template>
 
 <script>
-import { Form } from 'ant-design-vue';
-import { FormItem } from 'ant-design-vue';
 
 export default {
   data () {
@@ -69,16 +86,8 @@ export default {
         }
       });
     },
-    handleSelectChange (value) {
-      console.log(value);
-      this.form.setFieldsValue({
-        note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
-      });
-    },
   },
   components:{
-    'a-form': Form,
-    'a-form-item':FormItem
   }
 };
 </script>
