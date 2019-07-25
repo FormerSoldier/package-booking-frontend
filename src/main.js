@@ -5,8 +5,10 @@ import store from './store'
 import 'ant-design-vue/dist/antd.css'
 import Axios from 'axios'
 
-Vue.prototype.Axios = Axios;
+Vue.prototype.$axios = Axios;
 Vue.config.productionTip = false
+
+Axios.defaults.baseURL="http://localhost:8888"
 
 new Vue({
   router,

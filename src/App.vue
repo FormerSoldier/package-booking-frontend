@@ -6,8 +6,11 @@
     </div> -->
     <!-- <router-view/> -->
     <!-- <home></home> -->
+    
 
-    <package-enwrap-table></package-enwrap-table>
+
+    <package-enwrap-form></package-enwrap-form>
+    <!-- <package-enwrap-table></package-enwrap-table> -->
   </div>
 </template>
 
@@ -15,10 +18,13 @@
 <script>
 import Home from './components/home'
 import PackageEnwrapTable from './components/packageEnwrapTable'
+import PackageEnwrapForm from './components/packageEnwrapForm'
+
 export default {
   components:{
     Home,
-    PackageEnwrapTable
+    PackageEnwrapTable,
+    PackageEnwrapForm
   }
 }
 </script>

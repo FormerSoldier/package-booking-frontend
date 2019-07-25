@@ -50,6 +50,9 @@
 </template>
 
 <script>
+import { Form } from 'ant-design-vue';
+import { FormItem } from 'ant-design-vue';
+
 export default {
   data () {
     return {
@@ -73,5 +76,9 @@ export default {
       });
     },
   },
+  components:{
+    'a-form': Form,
+    'a-form-item':FormItem
+  }
 };
 </script>
