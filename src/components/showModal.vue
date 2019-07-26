@@ -1,6 +1,5 @@
 <template>
   <div>
-    <a-button type="primary" @click="showModal">入库+</a-button>
     <a-modal
       title="菜鸟驿站"
       :visible="visible"
@@ -70,6 +69,7 @@
 </template>
 <script>
 import PackageEnwrapForm from './packageEnwrapForm'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -81,22 +81,40 @@ export default {
     }
   },
   methods: {
-    showModal() {
-      this.visible = true
-    },
+
     handleOk(e) {
-      console.log(e);
+      e.preventDefault();
       this.ModalText = '入库';
       this.confirmLoading = true;
+
+      this.form.validateFields((err, values) => {
+      console.log(values);
+      if (!err) {
+        this.$store.dispatch('addPackageEnwrap',values)
+        console.log('Received values of form: ', values);
+      }
+      });
+
       setTimeout(() => {
-        this.visible = false;
+        this.$store.commit('setVisible',false);
         this.confirmLoading = false;
       }, 1000);
     },
     handleCancel(e) {
       console.log('Clicked cancel button');
-      this.visible = false
+      this.$store.commit('setVisible',false);
     },
+  },
+  computed:{
+    ...mapGetters([
+      'getVisible'
+    ])
+  },
+  watch:{
+    getVisible: function(){
+      console.log('visible is changed');
+      this.visible =  this.$store.state.visible;
+    }
   },
   components:{
       PackageEnwrapForm

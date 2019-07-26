@@ -33,6 +33,7 @@ const columns = [{
 }
 ];
 
+import { mapGetters } from 'vuex'
 export default {
   
   data() {
@@ -45,19 +46,23 @@ export default {
   },
   methods: {
   },
-  watch:{
-      'this.$store.state.list':function(){
-          this.data = this.$store.getters.getList;
-      }
-  },
   mounted:function(){
-    this.$axios
-    .get('/package-bookings')
-    .then(res => {
-      this.data = res.data;})
-    .catch(error => {
-      console.log('发生了错误'+error);
-    })
-  }
+    this.$store.dispatch('getListFromBackEnd');
+  },
+    computed:{
+    ...mapGetters([
+      'getList'
+    ]),
+    
+    /*getFilterType:function(){
+      return this.$store.state.filterType;
+    }*/
+  },
+  watch:{
+    getList: function(){
+      console.log('监听事件执行');
+      this.data = this.$store.state.list;
+    }
+  },
 }
 </script>
