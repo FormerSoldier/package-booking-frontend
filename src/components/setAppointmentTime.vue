@@ -28,12 +28,15 @@
             <span :style="{ display: 'inline-block', width: '24px', textAlign: 'center' }">
                 -
             </span>
+            <a-time-picker @change="onChange" :defaultOpenValue="moment('00:00:00', 'HH:mm:ss')" />
+
         </a-form>
   </div>
 </template>
 <script>
 import PackageEnwrapForm from './packageEnwrapForm'
 import { mapGetters } from 'vuex'
+import moment from 'moment';
 export default {
   data() {
     return {
@@ -45,7 +48,10 @@ export default {
     }
   },
   methods: {
-
+    moment,
+    onChange(time, timeString){
+      console.log(time, timeString);
+    },
     handleOk(e) {
       e.preventDefault();
       this.ModalText = '入库';

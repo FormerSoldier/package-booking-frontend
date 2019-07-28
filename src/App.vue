@@ -7,7 +7,6 @@
     <!-- <router-view /> -->
     <home></home>
     <show-modal></show-modal>
-    <appoint-component></appoint-component>
   </div>
 </template>
 
@@ -17,15 +16,13 @@ import Home from './components/home'
 import PackageEnwrapTable from './components/packageEnwrapTable'
 import PackageEnwrapForm from './components/packageEnwrapForm'
 import showModal from './components/showModal'
-import appointComponent from './components/setAppointmentTime'
 
 export default {
   components:{
     Home,
     PackageEnwrapTable,
     PackageEnwrapForm,
-    showModal,
-    appointComponent
+    showModal
   }
 }
 </script>
