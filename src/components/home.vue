@@ -48,7 +48,8 @@ export default {
         console.log('click');
       },
       changeFilterType(key){
-        this.$store.commit('setFilterType',key);
+        console.log('key的值为 '+key);
+        this.$store.dispatch('getListFromBackEnd',key);
       }
     }
 }

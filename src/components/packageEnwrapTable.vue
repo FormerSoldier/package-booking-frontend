@@ -6,9 +6,9 @@
     :dataSource="data"
     :rowKey="record => record.orderId"
   >
-    <template >
-      
-    </template>
+    <a-button slot="operation" slot-scope="text,record"  v-if="record.orderStatus == 0" @click="receiptPack(record)">
+        确认收货
+    </a-button>
   </a-table>
 </template>
 <script>
@@ -28,8 +28,9 @@ const columns = [{
   title: '预约时间',
   dataIndex: 'appointmentTime',
 },{
-  title: '按钮的地方',
-  dataIndex: '',
+  title: " ",
+  dataIndex: "operation",
+  scopedSlots: { customRender: "operation" }
 }
 ];
 
@@ -45,6 +46,12 @@ export default {
     }
   },
   methods: {
+    receiptPack:function(record){
+      console.log(record);
+      let filterType = this.$store.state.filterType;
+      console.log('调用前'+filterType);
+      this.$store.dispatch('updatePackageEnwrapStatus',record,filterType);
+    }
   },
   mounted:function(){
     this.$store.dispatch('getListFromBackEnd');
@@ -53,10 +60,6 @@ export default {
     ...mapGetters([
       'getList'
     ]),
-    
-    /*getFilterType:function(){
-      return this.$store.state.filterType;
-    }*/
   },
   watch:{
     getList: function(){

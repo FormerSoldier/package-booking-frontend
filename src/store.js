@@ -35,11 +35,14 @@ const mutations ={
   }
 }
 const actions ={
-  getListFromBackEnd:({commit}) =>{
-    console.log(state.filterType);
+  getListFromBackEnd:({commit},filter) =>{
+    if(filter == null)
+      filter = 1;
+    console.log('filter为  ' +filter);
+    commit('setFilterType',filter);
     axios.get('/package-bookings',{
       params:{
-        filterType:state.filterType
+        filterType:filter
       }
     }).then(res => {   
       commit('setList',res.data);
@@ -49,12 +52,23 @@ const actions ={
   },
   addPackageEnwrap:({commit}, enwrap) =>{
     console.log('????');
+    console.log(enwrap);
     axios.post('/package-bookings',enwrap)
     .then(res => {   
       commit('addListItem',res.data);
     }).catch(error => {
         console.log('请求后台数据失败，请联系xxx'+error);
     });
+  },
+  updatePackageEnwrapStatus:({commit},enwrap) => {
+    enwrap.orderStatus = 3;
+    axios.put('/package-bookings',enwrap)
+    .then(res => {   
+      commit('setList',res.data);
+    }).catch(error => {
+        console.log('请求后台数据失败，请联系xxx'+error);
+    });
+
   }
 }
 
